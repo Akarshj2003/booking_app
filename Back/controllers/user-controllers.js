@@ -30,5 +30,4 @@ if(!user){
     return res.status(500).json({message:"Unexepted Error"});
 }
 return res.status(201).json({user});
-
 };
