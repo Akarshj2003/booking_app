@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user-routes.js";
+import adminRouter from "./routes/admin-routes.js";
 
 const app = express();
 dotenv.config();
@@ -10,6 +11,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use("/user",userRouter);
+app.use("/admin",adminRouter);
 
 
 
