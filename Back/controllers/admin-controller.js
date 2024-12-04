@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import Admin from '../models/Admin.js';
-import { decrypt } from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 
 export const addAdmin = async (req,res,next)=>{
@@ -51,8 +51,9 @@ export const adminlogin = async (req,res,next)=>{
     if(!correct){
         return res.status(400).json({message:"Incorrct Password"});
     }
+    const token= jwt.sign({id:existingAdmin._id},process.env.SECRET_KEY,{expiresIn:"7d",});
 
-    return res.status(200).json({message:"login succesfull"});
+    return res.status(200).json({message:"login succesfull",token,id:existingAdmin._id});
 
 
 };
@@ -69,4 +70,4 @@ export const getAlladmin = async(req,res,next)=>{
         return res.status(500).json({massage:"unexpeted Error Occured"})
     }
     return res.status(200).json({admins});
-    };
+};
