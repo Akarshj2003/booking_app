@@ -1,6 +1,8 @@
 import { decrypt } from 'dotenv';
 import jwt from 'jsonwebtoken';
 import Movie from '../models/Movie.js';
+import Admin from '../models/Admin.js';
+import mongoose from 'mongoose';
 
 
 export const addMovie = async(req,res,next)=>{
@@ -28,7 +30,13 @@ const getToken =req.headers.authorization.split(" ")[1];
     let movie
     try{
         movie = new Movie({title,description,actors,relaseDate:new Date(`${releaseDate}`),posterUrl,featured,admin:adminId});
-        movie = await movie.save();
+       const session = await mongoose.startSession();
+       const adminUser = await Admin.findById(adminId);
+       session.startTransaction();
+        await movie.save({session});
+        adminUser.addedMovies.push(movie);
+        await adminUser.save({session});
+        await session.commitTransaction();
     }catch(err){
         console.log(err);
     }

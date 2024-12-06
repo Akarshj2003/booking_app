@@ -3,7 +3,7 @@ import { addAdmin, adminlogin, getAlladmin } from '../controllers/admin-controll
 
 
 const adminRouter =express.Router();
-adminRouter.get("/all",getAlladmin);
+adminRouter.get("/",getAlladmin);
 adminRouter.post("/signup",addAdmin);
 adminRouter.post("/login",adminlogin);
 

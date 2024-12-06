@@ -17,6 +17,10 @@ const userSchema =new Schema({
         required: true,
         minLength:6,
     },
+    bookings:[{
+        type: mongoose.Types.ObjectId,
+        ref:"Booking",
+    }],
 });
 
 
