@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteUser, getAllUsers, login, signup, updateUser } from "../controllers/user-controllers.js";
+import { deleteUser, getAllUsers, getBookingOfUser, login, signup, updateUser } from "../controllers/user-controllers.js";
 
 
 
@@ -10,5 +10,6 @@ userRouter.post("/signup",signup);
 userRouter.put("/:id",updateUser);
 userRouter.delete("/:id",deleteUser);
 userRouter.post("/login",login);
+userRouter.get("/bookings/:id",getBookingOfUser);
 
 export default userRouter;

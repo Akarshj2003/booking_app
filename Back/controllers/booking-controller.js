@@ -55,3 +55,39 @@ export const getBooking = async(req,res,next)=>{
     res.status(200).json({message:"Booking of the Movie",booking});
 
 };
+export const getAllBooking = async(req,res,next)=>{
+    let booking;
+    try{
+        booking= await Booking.find();
+    }catch(err){
+        return console.log(err);
+    }
+    if(!booking){
+        return res.status(500).json({message:"unexpeted error"});
+    }
+    res.status(200).json({message:"Bookings of the All Movie",booking});
+
+};
+
+export const delBooking =async(req,res,next)=>{
+    const id= req.params.id;
+    let booking;
+    try{
+        booking=await Booking.findByIdAndDelete(id).populate("user movie");
+        console.log(booking);
+        const session =await mongoose.startSession();
+        session.startTransaction();
+        await booking.user.bookings.pull(booking);
+        await booking.movie.bookings.pull(booking);
+        await booking.movie.save({session});
+        await booking.user.save({session});
+        session.commitTransaction();
+    }catch(err){
+        return console.log(err);
+    }
+    if(!booking){
+        return res.status(500).json({message:"No Booking to Deleate"});
+    }
+    res.status(200).json({message:"Booking of the Movie Deleated",booking});
+
+};
