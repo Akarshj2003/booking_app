@@ -3,7 +3,7 @@ import AuthForm from './Auth-form';
 
 const Auth = () => {
   return (
-    <AuthForm></AuthForm>
+    <div> hi</div>
   );
 };
 
