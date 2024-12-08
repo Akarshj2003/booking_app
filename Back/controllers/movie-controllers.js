@@ -29,7 +29,7 @@ const getToken =req.headers.authorization.split(" ")[1];
     }
     let movie
     try{
-        movie = new Movie({title,description,actors,relaseDate:new Date(`${releaseDate}`),posterUrl,featured,admin:adminId});
+        movie = new Movie({title,description,actors,releaseDate:new Date(`${releaseDate}`),posterUrl,featured,admin:adminId});
        const session = await mongoose.startSession();
        const adminUser = await Admin.findById(adminId);
        session.startTransaction();
