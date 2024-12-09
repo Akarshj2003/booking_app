@@ -13,8 +13,8 @@ export const HomePage = () => {
         
     },[]);
     console.log(movies)
-  return <Box width={'100%'} height='100%' margin="auto" marginTop={2}>
-    <Box margin={'auto'} width={'80%'} height={'40vh'} padding={2}>
+  return <Box bgcolor={"#656867"} width={'100%'} height='100%' margin="auto" marginTop={2}>
+    <Box margin={'auto'} width={'80%'} height={'40vh'} padding={2} >
         <img 
          src='https://i.ytimg.com/vi/5IA7QjEheck/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBdzfK5YkHBRxiImi_Bhi5hTzAQ9g'
          alt='Latest Movie'
@@ -29,13 +29,13 @@ export const HomePage = () => {
          />
     </Box>
     <Box padding={5} margin={"auto"}>
-        <Typography variant='h4' textAlign={"center"}>Latest Releases</Typography>
+        <Typography width={"40%"} margin={"auto"} variant='h4' bgcolor={"#ad1c42"} textAlign={"center"} borderRadius={12}>Latest Releases</Typography>
     </Box>
-    <Box display={"flex"} justifyContent={"center"} flexWrap={"wrap"}>
-        {movies && movies.slice(0,4).map((movie,index)=>(<MovieItem id={movie.id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index}/>))}
+    <Box display={"flex"} justifyContent={"center"} flexWrap={"wrap"} bgcolor={"#656867"}>
+        {movies && movies.slice(-4).reverse().map((movie,index)=>(<MovieItem id={movie.id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index}/>))}
     </Box>
-    <Box display={"flex"} padding={5} margin={"auto"}>
-        <Button LinkComponent={Link} to="/movies" variant='outlined'sx={{margin:"auto",color:"#2b2d42"}}>
+    <Box display={"flex"} padding={5} margin={"auto"} >
+        <Button LinkComponent={Link} to="/movies"  variant='contained'sx={{margin:"auto",color:"#2b2d42" }}>
             View All Movies
         </Button>
     </Box>
