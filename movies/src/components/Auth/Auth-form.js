@@ -2,8 +2,23 @@ import React, { useState } from 'react';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { Box, Dialog, FormLabel, TextField, Typography, Button, Stack, Paper, IconButton } from '@mui/material';
 
-const AuthForm = () => {
+const AuthForm = ({onSubmit, isAdmin}) => {
+  const [Inputs, setInputs] = useState({
+    name:"",
+    email:"",
+    password:"",
+  })
     const [isSignup, setisSignup] = useState(false);
+    const handleChange =(e)=>{
+      setInputs((prevState)=>({
+        ...prevState,
+        [e.target.name]:e.target.value,
+      }))
+    }
+    const handleSubmit=(e)=>{
+      e.preventDefault();
+      onSubmit({Inputs,signup: isAdmin ? false : isSignup });
+    }
   return (
     <Dialog PaperProps={{style:{borderRadius:20}}} open={true}>
         <Box sx={{ml:"auto",padding:1}}>
@@ -32,11 +47,13 @@ const AuthForm = () => {
         >
           {isSignup ? "Signup":"Login"}
         </Typography>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
-          {isSignup && <Box>
+          {!isAdmin && isSignup && <Box>
               <FormLabel sx={{ fontWeight: "bold", color: "#333" }}>Name</FormLabel>
               <TextField
+              value={Inputs.name}
+              onChange={handleChange}
                 type="name"
                 name="name"
                 fullWidth
@@ -48,6 +65,9 @@ const AuthForm = () => {
             <Box>
               <FormLabel sx={{ fontWeight: "bold", color: "#333" }}>Email</FormLabel>
               <TextField
+                value={Inputs.email}
+                onChange={handleChange}
+              
                 type="email"
                 name="email"
                 fullWidth
@@ -59,6 +79,8 @@ const AuthForm = () => {
             <Box>
               <FormLabel sx={{ fontWeight: "bold", color: "#333" }}>Password</FormLabel>
               <TextField
+                value={Inputs.password}
+                onChange={handleChange}
                 type="password"
                 name="password"
                 fullWidth
@@ -82,6 +104,7 @@ const AuthForm = () => {
             >
               {isSignup ? "Signup":"login"}
             </Button>
+            {!isAdmin && 
             <Button
             onClick={()=>setisSignup(!isSignup)}
             fullWidth
@@ -89,8 +112,8 @@ const AuthForm = () => {
                 borderRadius:3,
               }}
             >
-              Switch To {isSignup ? "login":"signup" }
-            </Button>
+              Go To {isSignup ? "login":"signup" }
+            </Button>}
           </Stack>
         </form>
       </Paper>

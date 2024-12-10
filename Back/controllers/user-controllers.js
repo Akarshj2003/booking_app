@@ -34,7 +34,7 @@ return console.log(err);
 if(!user){
     return res.status(500).json({message:"Unexepted Error"});
 }
-return res.status(201).json({user});
+return res.status(201).json({id:user._id});
 };
 
 
@@ -94,7 +94,7 @@ export const login =async(req,res,next)=>{
     if(!passCorect){
         return res.status(400).json({message:"Incorect password"});
     }
-    return res.status(200).json({message:"login Sucessfull"});
+    return res.status(200).json({message:"login Sucessfull",id:existingUser._id});
 };
 export const getBookingOfUser = async (req,res,next)=>{
     const id =req.params.id;
