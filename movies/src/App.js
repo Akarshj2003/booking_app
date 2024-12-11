@@ -7,6 +7,7 @@ import Auth from "./components/Auth/Auth.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { adminActions, userActions } from "./store/intex.js";
+import Booking from "./components/Bookings/Booking.js";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/movies" element={<Movies/>}/>
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/auth" element={<Auth/>}/>
+          <Route path="/booking/:id" element={<Booking/>}/>
         </Routes>
       </section>
     </div>
