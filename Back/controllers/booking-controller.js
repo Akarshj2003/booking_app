@@ -31,7 +31,8 @@ export const newbooking = async(req,res,nex)=>{
         await exeUser.save({session});
         await exeMovie.save({session});
         await booking.save({session});
-        session.commitTransaction();
+        await session.commitTransaction();
+
     }catch(err){
         return console.log(err);
     }

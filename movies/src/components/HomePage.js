@@ -22,7 +22,7 @@ export const HomePage = () => {
          height={'100%'}
          />
          <img 
-         src='https://c4.wallpaperflare.com/wallpaper/807/7/801/x-men-days-of-future-past-poster-xmen-movie-wallpaper-preview.jpg'
+         src='https://img.jakpost.net/c/2019/05/23/2019_05_23_73027_1558609542._large.jpg'
          alt='Latest Movie'
          width={'50%'}
          height={'100%'}
