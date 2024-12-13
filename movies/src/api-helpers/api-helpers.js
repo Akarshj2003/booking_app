@@ -71,3 +71,35 @@ export const newBooking = async (data) => {
   const resData =await res.data;
   return resData;
   };
+
+export const delBooking =async (id)=>{
+   const res=await axios.delete(`/booking/${id}`).catch(err=>console.log(err));
+   if(res.status!==200){
+      return console.log("unexprted Error");
+   }
+   const resData =await res.data;
+   return resData;
+};
+
+export const addMovie =async (data)=>{
+   const res=await axios.post(`/movie`,{
+      title:data.title,
+      description:data.description,
+      actors: data.actors,
+      posterUrl: data.posterUrl,
+      releaseDate:data.releaseDate ,
+      featured:data.featured,
+      admin:localStorage.getItem("adminId"),
+   },
+   {
+      headers:{
+         Authorization:`Bearer ${localStorage.getItem("token")}`
+      }
+   }
+   ).catch(err=>console.log(err));
+   if(res.status!==201){
+      return console.log("unexprted Error");
+   }
+   const resData =await res.data;
+   return resData;
+};

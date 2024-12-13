@@ -15,9 +15,9 @@ const MovieItem = ({title,releaseDate,posterUrl,id}) => {
         }, 
         }}
     >
- <img height={'62%'} width={"100%"} src={posterUrl} alt={title} />
+ <img height={'60%'} width={"100%"} src={posterUrl} alt={title} />
   <CardContent>
-    <Typography gutterBottom variant="h5" component="div">
+    <Typography gutterBottom variant="h6" component="div">
       {title}
     </Typography>
     <Typography variant="body2" color ='text.secondary'>

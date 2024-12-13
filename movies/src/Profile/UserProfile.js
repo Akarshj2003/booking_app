@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { getUserBookings } from '../api-helpers/api-helpers.js';
-import { Box, Typography, Paper, Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { delBooking, getUserBookings } from '../api-helpers/api-helpers.js';
+import { Box, Typography, Paper, Avatar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
 
@@ -12,6 +12,9 @@ const UserProfile = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleDelete= (id)=>{
+    delBooking(id).then((res=>console.log(res))).catch(err=>console.log(err));
+  }
   return (
     <Box
       width="100%"
@@ -92,6 +95,11 @@ const UserProfile = () => {
                     <TableCell align="center">{booking.seatNumber}</TableCell>
                     <TableCell align="right">
                       {new Date(booking.date).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton color='error' onClick={()=>handleDelete(booking._id)}>
+                      <DeleteForeverIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
