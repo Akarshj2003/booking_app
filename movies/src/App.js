@@ -10,6 +10,7 @@ import { adminActions, userActions } from "./store/intex.js";
 import Booking from "./components/Bookings/Booking.js";
 import UserProfile from "./Profile/UserProfile.js";
 import AddMovie from "./components/Movies/AddMovie.js";
+import AdminProfile from "./Profile/AdminProfile.js";
 
 
 function App() {
@@ -32,11 +33,24 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/movies" element={<Movies/>}/>
-          <Route path="/admin" element={<Admin/>}/>
+          {!isUserLoggedIn && !isAdminLoggedIn &&
+          <>
+           <Route path="/admin" element={<Admin/>}/>
           <Route path="/auth" element={<Auth/>}/>
+          </>
+          }
+          {isUserLoggedIn&&
+          <>
           <Route path="/user" element={<UserProfile/>}/>
-          <Route path="/add" element={<AddMovie/>}/>
           <Route path="/booking/:id" element={<Booking/>}/>
+          </>
+          }
+          {isAdminLoggedIn &&
+          <>
+          <Route path="/add" element={<AddMovie/>}/>
+          <Route path="/user-admin" element={<AdminProfile/>}/>
+          </>
+          }
         </Routes>
       </section>
     </div>
