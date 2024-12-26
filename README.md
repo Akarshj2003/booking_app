@@ -134,5 +134,4 @@ A full-stack booking application built with Express, MongoDB, React, Redux, and 
 Feel free to fork the repository, create a branch, and submit pull requests. Please follow the code style and ensure proper documentation for all contributions.
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+-------------
