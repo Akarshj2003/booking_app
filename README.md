@@ -61,7 +61,7 @@ A full-stack booking application built with Express, MongoDB, React, Redux, and 
 1. Navigate to the frontend directory:
 
    ```bash
-   cd booking_app/frontend
+   cd booking_app/movie
    ```
 
 2. Install dependencies:
